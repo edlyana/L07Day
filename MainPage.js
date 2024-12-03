@@ -25,7 +25,7 @@ const MainPage = ({navigation}) => {
         <View>
             <StatusBar/>
             <Text style={styles.headingIntro}>Monthly Budget App</Text>
-            <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("Add")}}>
+            <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("NewMonth")}}>
                 <Text style={{textAlign:"center", paddingTop:12}}>Add Money Details</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("Home")}}>
