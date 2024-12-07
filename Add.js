@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import {datasource} from './Data';
 import {TextInput, View, Text, Button} from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
-import Home from "./Home";
 
 const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
     const [itemName, setItemName] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState();
     const [category, setCategory] = useState('Others');
 
     return (
@@ -19,7 +18,7 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
 
             <View>
                 <Text style={{fontWeight: 'bold'}}>Price:</Text>
-                <TextInput style={{borderWidth: 1}} onChangeText={(no) => setPrice(no)}/>
+                <TextInput style={{borderWidth: 1}} onChangeText={(number) => setPrice(number)}/>
             </View>
 
             <View style={{padding: 10}}>
@@ -27,10 +26,14 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
                     value={category}
                     onValueChange={(value) => setCategory(value)}
                     items={[
-                        {label:{setChoice1}, value:{setChoice1}},
-                        {label:{setChoice2}, value:{setChoice2}},
-                        {label:{setChoice3}, value:{setChoice3}},
+                        // {label:{setChoice1}, value:{setChoice1}},
+                        // {label:{setChoice2}, value:{setChoice2}},
+                        // {label:{setChoice3}, value:{setChoice3}},
+                        {label:"Food", value:"Food"},
+                        {label:"Bills", value:"Bills"},
+                        {label:"Entertainment", value:"Entertainment"},
                         {label:"Others", value:"Others"},
+                        {label:"Income", value:"Income"},
                     ]}
                 />
             </View>
@@ -47,7 +50,10 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
                 if(category == "Others") {
                     indexNum = 3;
                 }
-                datasource[indexNum].data.push(itemName);
+                if(category == "Income") {
+                    indexNum = 4;
+                }
+                datasource[indexNum].data.push(item);
                 navigation.navigate('Home')
             }
             }
