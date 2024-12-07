@@ -6,11 +6,18 @@ import {TextInput, View, Text, Button, Alert} from "react-native";
 
 const Edit = ({navigation, route}) => {
     const [letter, setLetter] = useState(route.params.key); // .key is being called here by Home.js
+    const [price, setPrice] = useState(0);
+
     return (
         <View style={{padding: 10}}>
             <View style={{padding: 10}}>
-                <Text style={{fontWeight: 'bold'}}>Letter:</Text>
+                <Text style={{fontWeight: 'bold'}}>Item Name:</Text>
                 <TextInput value={letter} style={{borderWidth: 1}} onChangeText={(text) => setLetter(text)}/>
+            </View>
+
+            <View style={{padding: 10}}>
+                <Text style={{fontWeight: 'bold'}}>Price:</Text>
+                <TextInput value={price} style={{borderWidth: 1}} onChangeText={(no) => setPrice(no)}/>
             </View>
 
             <View style={{flexDirection:'row'}}>

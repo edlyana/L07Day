@@ -8,28 +8,32 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         width: 200,
         height: 45,
-        backgroundColor:'blue',
+        backgroundColor:'#7DDF64',
         margin: 20,
     },
     headingIntro: {
         fontSize: 25,
-        color: 'blue',
+        color: 'white',
         textAlign: 'center',
         padding: 30,
         margin: 10,
     },
+    mainPage: {
+        backgroundColor: '#F17F29',
+        paddingBottom: 700,
+    }
 });
 
 const MainPage = ({navigation}) => {
     return (
-        <View>
+        <View style={styles.mainPage}>
             <StatusBar/>
             <Text style={styles.headingIntro}>Monthly Budget App</Text>
             <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("NewMonth")}}>
-                <Text style={{textAlign:"center", paddingTop:12}}>Add Money Details</Text>
+                <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Add Money Details</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("Home")}}>
-                <Text style={{textAlign:"center", paddingTop:12}}>Home Screen</Text>
+                <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
             </TouchableOpacity>
         </View>
     );

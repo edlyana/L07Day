@@ -27,6 +27,7 @@ const Home = ({navigation}) => {
                 navigation.navigate("Edit", {index:index, type:section.title, key:item.key}); // .key is being called in Edit.js
             }}>
                 <Text style={styles.textStyle} >{item.key}</Text>
+                <Text style={styles.textStyle} >$ {item.price}</Text>
             </TouchableOpacity>
         );
     };

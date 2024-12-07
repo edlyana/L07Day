@@ -1,15 +1,24 @@
 const datasource = [
+
+    // num == price
     {data:[
-            {key: '90'}, // datasource[0][0]
-            {key: 'e'}, // datasource[0][1]
+            {key:"Dinner at Swensens", price:32.23},
+            {key:"Bubble Tea", price:5.60}
         ],
-        title:"Week 1", bgcolor:"skyblue"},
+        title:"Food", bkColor:"#CAC2B5", nameIcon:"sun", txColor:"black"},
     {data:[
-            {key: 'b'}, // datasource[1][0]
-            {key: 'c'}, // datasource[1][1]
-            {key: 'd'}, // datasource[1][2]
+            {key:"Electric", price:45.65},
+            {key:"Fuel", price:80.05},
         ],
-        title:"Week 2", bgcolor:"khaki"}
+        title:"Bills", bkColor:"#8EA604", nameIcon:"leaf"},
+    {data:[
+            {key:"Movies", price:23.45},
+        ],
+        title:"Entertainment", bkColor:"#7E78D2", nameIcon:"droplet"},
+    {data:[
+            {key:"School Supplies", price:59.60},
+        ],
+        title:"Others", bkColor:"#7E78D2", nameIcon:"smile"},
 ];
 
 export {datasource};
