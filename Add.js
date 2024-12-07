@@ -5,16 +5,16 @@ import RNPickerSelect from 'react-native-picker-select';
 import Home from "./Home";
 
 const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
-    const [letter, setLetter] = useState('');
+    const [itemName, setItemName] = useState('');
     const [price, setPrice] = useState(0);
-    const [type, setType] = useState('Others');
+    const [category, setCategory] = useState('Others');
 
     return (
         <View style={{padding: 10}}>
             <Text>New Expenses</Text>
             <View style={{padding: 10}}>
                 <Text style={{fontWeight: 'bold'}}>Item Name:</Text>
-                <TextInput style={{borderWidth: 1}} onChangeText={(text) => setLetter(text)}/>
+                <TextInput style={{borderWidth: 1}} onChangeText={(text) => setItemName(text)}/>
             </View>
 
             <View>
@@ -24,8 +24,8 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
 
             <View style={{padding: 10}}>
                 <RNPickerSelect
-                    value={type}
-                    onValueChange={(value) => setType(value)}
+                    value={category}
+                    onValueChange={(value) => setCategory(value)}
                     items={[
                         {label:{setChoice1}, value:{setChoice1}},
                         {label:{setChoice2}, value:{setChoice2}},
@@ -34,13 +34,20 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
                     ]}
                 />
             </View>
+
             <Button title="SUBMIT" onPress={() => {
-                let item = {key: letter}; //{key: d}
-                let indexNum = 1;
-                if(type == "Vowels") {
-                    indexNum = 0;
+                let item = {key: itemName, price: price}; //{key: d}
+                let indexNum = 0;
+                if(category == "Bills") {
+                    indexNum = 1;
                 }
-                datasource[indexNum].data.push(item);
+                if(category == "Entertainment") {
+                    indexNum = 2;
+                }
+                if(category == "Others") {
+                    indexNum = 3;
+                }
+                datasource[indexNum].data.push(itemName);
                 navigation.navigate('Home')
             }
             }
