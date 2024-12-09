@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, Button, SectionList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome6";
 
 const styles = StyleSheet.create({

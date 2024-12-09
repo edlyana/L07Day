@@ -1,11 +1,9 @@
 const datasource = [
-
-    // num == price
     {data:[
             {key:"Dinner", price:32.23},
             {key:"Bubble Tea", price:5.60}
         ],
-        title:"Food", bkColor:"#F17F29", nameIcon:"burger", txColor:"black"},
+        title:"Food", bkColor:"#F17F29", nameIcon:"burger"},
     {data:[
             {key:"Electric", price:45.65},
             {key:"Fuel", price:80.05},
