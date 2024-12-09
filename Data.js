@@ -2,7 +2,7 @@ const datasource = [
 
     // num == price
     {data:[
-            {key:"Dinner at Swensens", price:32.23},
+            {key:"Dinner", price:32.23},
             {key:"Bubble Tea", price:5.60}
         ],
         title:"Food", bkColor:"#F17F29", nameIcon:"burger", txColor:"black"},
@@ -10,7 +10,7 @@ const datasource = [
             {key:"Electric", price:45.65},
             {key:"Fuel", price:80.05},
         ],
-        title:"Bills", bkColor:"#F17F29", nameIcon:"folder"},
+        title:"Bills", bkColor:"#F17F29", nameIcon:"file"},
     {data:[
             {key:"Movies", price:23.45},
         ],
@@ -22,7 +22,7 @@ const datasource = [
     {data:[
             {key:"Grandma", price:10.00},
         ],
-        title:"+ Income", bkColor:"#CDC7E5", nameIcon:"cat"},
+        title:"+ Income", bkColor:"#8564CB", nameIcon:"cat"},
 ];
 
 export {datasource};

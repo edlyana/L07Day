@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     textStyle: {
         fontSize: 15,
         margin: 10,
-        textAlign: 'left',
+        textAlign: 'center',
     },
     opacityStyle: {
         borderWidth: 1,
@@ -26,11 +26,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontWeight:'bold',
+        borderWidth:1.5,
+        width: 412,
+        height: 33,
     },
-    buttonContainer:{
-        borderWidth: 1,
+    buttonContainer0: {
+        padding: 10,
         margin: 10,
-        // marginVertical: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
     },
 // ADD INCOME //
     pageStyle: {
@@ -61,26 +65,89 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         alignSelf: 'center',
-        borderRadius: 25,
-        width: 200,
-        height: 45,
-        backgroundColor:'#7DDF64',
-        margin: 10,
+        borderRadius: 50,
+        width: 400,
+        height: 50,
+        backgroundColor:'#B04C00',
+        margin: 3,
+    },
+
+    //footer section
+    buttonstyle0: {
+        justifyContent: 'space-evenly',
+        borderRadius: 50,
+        width: 105,
+        height: 105,
+        backgroundColor:'#B04C00',
+    },
+    textButton0: {
+        textAlign: 'center',
+        fontSize: 16,
+        color: 'white',
+    },
+
+    //TESTING !!!!!!!!!!!!!!!!!!!!!!!!!!
+    scrollContainer: {
+        flexGrow: 1,
+        paddingBottom: 20, // Ensure padding at the bottom for scrolling
+    },
+    sectionListContainer: {
+        paddingHorizontal: 10,
+    },
+    sectionHeader: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderBottomWidth: 1,
+        borderColor: "#CDC7E5",
+        marginVertical: 5,
+    },
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    itemContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        backgroundColor: "#f5f5f5",
+        borderRadius: 5,
+        marginVertical: 2,
+    },
+    itemKey: {
+        fontSize: 16,
+        fontWeight: "500",
+    },
+    itemPrice: {
+        fontSize: 16,
+        color: "#333",
     },
 });
 
 const Home = ({navigation}) => {
 
-    const renderItem = ({item, index, section}) => {
+    const renderSectionHeader = ({section: {title, bkColor, nameIcon}}) => (
+        <View style={[styles.sectionHeader, {backgroundColor: bkColor}]}>
+            <Text style={styles.sectionTitle}>{title}</Text>
+            <Icon name={nameIcon} size={25} color="black" />
+        </View>
+    );
+
+    const renderCategory = ({item, index, section}) => {
         return (
-            <TouchableOpacity style={styles.opacityStyle} onPress={() => {
+            <TouchableOpacity style={styles.itemContainer} onPress={() => {
                 navigation.navigate("Edit", {index:index, category:section.title, key:item.key, price:item.price}); // .key is being called in Edit.js
             }}>
-                <Text style={styles.textStyle} >{item.key}</Text>
-                <Text style={styles.textStyle} >$ {item.price}</Text>
+                <Text style={styles.itemKey}>{item.key}</Text>
+                <Text style={styles.itemPrice}>$ {item.price}</Text>
             </TouchableOpacity>
         );
     };
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     const calculateTotal = () => {
         const total = {};
@@ -113,30 +180,36 @@ const Home = ({navigation}) => {
     };
 
     return (
-        <View style={[styles.container, {flex:1}]}>
+        <View style={[styles.container, {flex:1, backgroundColor:"#CDC7E5"}]}>
             <StatusBar hidden={true}/>
-            <View style={styles.buttonContainer}>
-                <Button title="View Summary" onPress={calculateTotal}/>
-            </View>
 
-            <SectionList sections={datasource} renderItem={renderItem}
-                         renderSectionHeader={({section:{title, bkColor, nameIcon}})=>(
-                             <Text style={[styles.headerText, {backgroundColor:bkColor}]}>
-                                 {title}
-                                 <Icon name={nameIcon} size={25} color={"black"}/>
-                             </Text>
-                         )}
+            <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
+                <Text style={{textAlign:"center", paddingTop:10, color:'white', fontSize:20,}}>Main Screen</Text>
+            </TouchableOpacity>
+
+            <SectionList sections={datasource}
+                         renderItem={renderCategory}
+                         renderSectionHeader={renderSectionHeader}
+                         keyExtractor={(item, index) => `${item.key}-${index}`}
+                         contentContainerStyle={styles.sectionListContainer}
+                         // renderItem={renderItem}
+                         // renderSectionHeader={({section:{title, bkColor, nameIcon}})=>(
+                         //     <Text style={[styles.headerText, {backgroundColor:bkColor}]}>
+                         //         {title}
+                         //         <Icon name={nameIcon} size={25} color={"black"}/>
+                         //     </Text>
+                         // )}
+
                          ListFooterComponent = {
-                             <>
-                                 <View style={styles.buttonContainer}>
-                                     <Button title="Add New Income/Expenses" onPress={()=> {navigation.navigate('Add')}}/>
-                                 </View>
-
-                                 // Next section ADD INCOME
-                                 <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
-                                     <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
+                             <View style={styles.buttonContainer0}>
+                                 <TouchableOpacity style={styles.buttonstyle0} onPress={()=> {navigation.navigate('Add')}}>
+                                     <Text style={styles.textButton0}>Add New Income/Expenses</Text>
                                  </TouchableOpacity>
-                             </>
+
+                                 <TouchableOpacity style={styles.buttonstyle0} onPress={calculateTotal}>
+                                     <Text style={styles.textButton0}>View   Summary</Text>
+                                 </TouchableOpacity>
+                             </View>
                          }
             />
         </View>

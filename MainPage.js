@@ -1,36 +1,50 @@
 import React from 'react';
 import {StatusBar, Button, SectionList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {datasource} from './Data';
+import Icon from "react-native-vector-icons/FontAwesome6";
 
 const styles = StyleSheet.create({
     btnStyle: {
         alignSelf: 'center',
         borderRadius: 25,
         width: 200,
-        height: 45,
-        backgroundColor:'#7DDF64',
-        margin: 20,
+        height: 50,
+        backgroundColor:'#B04C00',
+        margin: 10,
     },
     headingIntro: {
-        fontSize: 25,
-        color: 'white',
+        fontStyle: 'italic',
+        fontSize: 35,
+        color: '#0F1020',
         textAlign: 'center',
-        padding: 30,
+        paddingTop: 30,
         margin: 10,
     },
     mainPage: {
-        backgroundColor: '#F17F29',
+        backgroundColor: '#CDC7E5',
         paddingBottom: 700,
-    }
+    },
+    subtitle: {
+        fontSize: 18,
+        color: '#0F1020',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        paddingTop: 15,
+        paddingBottom: 35,
+    },
+    iconStyle: {
+        paddingLeft: 83,
+    },
 });
 
 const MainPage = ({navigation}) => {
     return (
         <View style={styles.mainPage}>
             <StatusBar/>
-            <Text style={styles.headingIntro}>Monthly Budget App</Text>
+            <Text style={styles.headingIntro}>Budget App</Text>
+            <Text style={styles.iconStyle}><Icon name="wallet" size={250} color={"white"}/></Text>
+            <Text style={styles.subtitle}>Your Expense and Income Manager</Text>
             <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("Home")}}>
-                <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
+                <Text style={{textAlign:"center", paddingTop:13, color:'white', fontSize:16}}>Home Screen</Text>
             </TouchableOpacity>
         </View>
     );
