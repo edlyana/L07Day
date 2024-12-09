@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 20,
-        // margin: 10,
         textAlign: 'center',
         fontWeight:'bold',
     },
     buttonContainer:{
         borderWidth: 1,
         margin: 10,
+        // marginVertical: 10,
     },
 // ADD INCOME //
     pageStyle: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 45,
         backgroundColor:'#7DDF64',
-        margin: 20,
+        margin: 10,
     },
 });
 
@@ -113,35 +113,33 @@ const Home = ({navigation}) => {
     };
 
     return (
-        <>
-            <View style={[styles.container, {marginBottom: 150}]}>
-                <StatusBar hidden={true}/>
-                <View style={styles.buttonContainer}>
-                    <Button title="View Summary" onPress={calculateTotal}/>
-                </View>
-
-                <View>
-                    <SectionList sections={datasource} renderItem={renderItem}
-                                 renderSectionHeader={({section:{title, bkColor, nameIcon}})=>(
-                                     <Text style={[styles.headerText, {backgroundColor:bkColor}]}>
-                                         {title}
-                                         <Icon name={nameIcon} size={25} color={"black"}/>
-                                     </Text>
-                                 )}
-                    />
-                </View>
-
-                <View style={styles.buttonContainer}>
-                    <Button title="Add New Income/Expenses" onPress={()=> {navigation.navigate('Add')}}/>
-                </View>
-
-                // Next section ADD INCOME
-                <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
-                    <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
-                </TouchableOpacity>
+        <View style={[styles.container, {flex:1}]}>
+            <StatusBar hidden={true}/>
+            <View style={styles.buttonContainer}>
+                <Button title="View Summary" onPress={calculateTotal}/>
             </View>
-        </>
 
+            <SectionList sections={datasource} renderItem={renderItem}
+                         renderSectionHeader={({section:{title, bkColor, nameIcon}})=>(
+                             <Text style={[styles.headerText, {backgroundColor:bkColor}]}>
+                                 {title}
+                                 <Icon name={nameIcon} size={25} color={"black"}/>
+                             </Text>
+                         )}
+                         ListFooterComponent = {
+                             <>
+                                 <View style={styles.buttonContainer}>
+                                     <Button title="Add New Income/Expenses" onPress={()=> {navigation.navigate('Add')}}/>
+                                 </View>
+
+                                 // Next section ADD INCOME
+                                 <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
+                                     <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
+                                 </TouchableOpacity>
+                             </>
+                         }
+            />
+        </View>
     );
 };
 
