@@ -69,15 +69,6 @@ const styles = StyleSheet.create({
     },
 });
 
-// const InputBox = ({label, onChangeText}) => {
-//     return (
-//         <View style={styles.inputContainer}>
-//             <Text style={styles.inputLabel}>{label}</Text>
-//             <TextInput style={styles.inputBox} onChangeText={onChangeText} keyboardType="numeric"/>
-//         </View>
-//     );
-// };
-
 const Home = ({navigation}) => {
 
     const renderItem = ({item, index, section}) => {
@@ -91,32 +82,44 @@ const Home = ({navigation}) => {
         );
     };
 
+    const calculateTotal = () => {
+        const total = {};
+        let expenseTotal = 0;
+        let totalIncome = 0;
+
+        datasource.forEach((category) => {
+            const totalPrice = category.data.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);  // Ensures 'price' is a number
+            if (category.title === "+ Income") {
+                totalIncome = totalPrice;
+            }
+            else {
+                total[category.title] = totalPrice.toFixed(2);
+                expenseTotal += totalPrice;
+            }
+        });
+
+        let summaryMessage = "";
+        if (totalIncome > expenseTotal) {
+            summaryMessage = `\nYou have a Surplus of $${(totalIncome - expenseTotal).toFixed(2)}`;
+        }
+        else {
+            summaryMessage = `\nYou have a Deficit of $${(expenseTotal - totalIncome).toFixed(2)}`;
+        }
+
+        Alert.alert(
+            "Summary of Income & Expenses",
+            `Total Income: $${totalIncome.toFixed(2)} \nTotal Expenses: $${expenseTotal.toFixed(2)} \n${summaryMessage}`,
+            [{text: "Close"}]);
+    };
+
     return (
-        <ScrollView>
+        <>
             <View style={[styles.container, {marginBottom: 150}]}>
                 <StatusBar hidden={true}/>
                 <View style={styles.buttonContainer}>
-                    <Button title="Summary of Monies" onPress={() => {
-                        // // Calculate total income and expenses
-                        // // let totalIncome = incomeHistory.reduce((acc, curr) => acc + curr, 0).toFixed(2);
-                        // let totalExpenses = 0; // Replace with your actual calculation of total expenses
-                        //
-                        // // Determine surplus or deficit
-                        // let summaryMessage = '';
-                        // if (totalIncome > totalExpenses) {
-                        //     summaryMessage = "You have a Surplus of $ " + (totalIncome - totalExpenses).toFixed(2);
-                        // }
-                        // else {
-                        //     summaryMessage = "You have a Deficit of $ " + (totalExpenses - totalIncome).toFixed(2);
-                        // }
-                        //
-                        // const msg = "Total Income: $ " + totalIncome + "\n" +
-                        //     "Total Expenses: $ " + totalExpenses + "\n" +
-                        //     summaryMessage;
-
-                        Alert.alert({text:"Close"});
-                    }}/>
+                    <Button title="View Summary" onPress={calculateTotal}/>
                 </View>
+
                 <View>
                     <SectionList sections={datasource} renderItem={renderItem}
                                  renderSectionHeader={({section:{title, bkColor, nameIcon}})=>(
@@ -127,37 +130,53 @@ const Home = ({navigation}) => {
                                  )}
                     />
                 </View>
+
                 <View style={styles.buttonContainer}>
                     <Button title="Add New Income/Expenses" onPress={()=> {navigation.navigate('Add')}}/>
                 </View>
 
                 // Next section ADD INCOME
-                <View style={styles.pageStyle}>
-                    {/*<InputBox label="Enter Income:" onChangeText={setIncome}/>*/}
-                    {/*<Button title="Add Income" onPress={addIncomeToHistory}/>*/}
-
-                    {/*<View style={styles.incomeHistory}>*/}
-                    {/*    <Text>Income History:</Text>*/}
-                    {/*    <FlatList data={totalIncome} renderItem={renderItem}/>*/}
-                    {/*    <FlatList*/}
-                    {/*        data={incomeHistory}*/}
-                    {/*        keyExtractor={(item, index) => index.toString()}*/}
-                    {/*        renderItem={({ item, index }) => (*/}
-                    {/*            <View style={styles.incomeItem}>*/}
-                    {/*                <Text>#{index + 1}: ${item}</Text>*/}
-                    {/*            </View>*/}
-                    {/*        )}*/}
-                    {/*    />*/}
-                    {/*</View>*/}
-
-                    <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
-                        <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
+                    <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
+                </TouchableOpacity>
             </View>
-        </ScrollView>
+        </>
 
     );
 };
 
 export default Home;
+
+
+// const InputBox = ({label, onChangeText}) => {
+//     return (
+//         <View style={styles.inputContainer}>
+//             <Text style={styles.inputLabel}>{label}</Text>
+//             <TextInput style={styles.inputBox} onChangeText={onChangeText} keyboardType="numeric"/>
+//         </View>
+//     );
+// };
+
+// Next section ADD INCOME
+// <View style={styles.pageStyle}>
+//     {/*<InputBox label="Enter Income:" onChangeText={setIncome}/>*/}
+//     {/*<Button title="Add Income" onPress={addIncomeToHistory}/>*/}
+//
+//     {/*<View style={styles.incomeHistory}>*/}
+//     {/*    <Text>Income History:</Text>*/}
+//     {/*    <FlatList data={totalIncome} renderItem={renderItem}/>*/}
+//     {/*    <FlatList*/}
+//     {/*        data={incomeHistory}*/}
+//     {/*        keyExtractor={(item, index) => index.toString()}*/}
+//     {/*        renderItem={({ item, index }) => (*/}
+//     {/*            <View style={styles.incomeItem}>*/}
+//     {/*                <Text>#{index + 1}: ${item}</Text>*/}
+//     {/*            </View>*/}
+//     {/*        )}*/}
+//     {/*    />*/}
+//     {/*</View>*/}
+//
+//     <TouchableOpacity style={styles.btnStyle} onPress={() => {navigation.navigate("MainPage")}}>
+//         <Text style={{textAlign:"center", paddingTop:12, color:'white'}}>Home Screen</Text>
+//     </TouchableOpacity>
+// </View>

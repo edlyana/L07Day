@@ -18,7 +18,7 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
 
             <View>
                 <Text style={{fontWeight: 'bold'}}>Price:</Text>
-                <TextInput style={{borderWidth: 1}} onChangeText={(number) => setPrice(number)}/>
+                <TextInput style={{borderWidth: 1}} onChangeText={(number) => setPrice(parseFloat(number))}/>
             </View>
 
             <View style={{padding: 10}}>
@@ -26,9 +26,6 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
                     value={category}
                     onValueChange={(value) => setCategory(value)}
                     items={[
-                        // {label:{setChoice1}, value:{setChoice1}},
-                        // {label:{setChoice2}, value:{setChoice2}},
-                        // {label:{setChoice3}, value:{setChoice3}},
                         {label:"Food", value:"Food"},
                         {label:"Bills", value:"Bills"},
                         {label:"Entertainment", value:"Entertainment"},
@@ -39,7 +36,7 @@ const Add = ({navigation, setChoice1, setChoice2, setChoice3}) => {
             </View>
 
             <Button title="SUBMIT" onPress={() => {
-                let item = {key: itemName, price: price}; //{key: d}
+                let item = {key: itemName, price: parseFloat(price)}; //{key: d}
                 let indexNum = 0;
                 if(category == "Bills") {
                     indexNum = 1;
