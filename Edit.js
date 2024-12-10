@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: 80,
         height: 80,
-        backgroundColor:'#B04C00',
+        backgroundColor:'#450B3F',
     },
     textButton0: {
         textAlign: 'center',
         fontSize: 16,
-        color: 'white',
+        color: '#f5f5f5',
     },
     buttonContainer0: {
         padding: 10,
@@ -30,15 +30,15 @@ const Edit = ({navigation, route}) => {
 
     return (
         <View style={{padding: 10, backgroundColor:'#CDC7E5', flex:1}}>
-            <Text style={{fontSize:20, textAlign:'center',fontWeight:'bold', color:'#f5f5f5', backgroundColor:'#B04C00', width:390, height:40, alignSelf:'center', paddingTop:6}}>Edit Item</Text>
+            <Text style={{fontSize:20, textAlign:'center',fontWeight:'bold', color:'#f5f5f5', backgroundColor:'#450B3F', width:390, height:40, alignSelf:'center', paddingTop:6}}>Edit Item</Text>
             <View style={{padding: 10}}>
                 <Text style={{fontWeight: 'bold', fontSize:16, paddingBottom:5}}>Item Name:</Text>
-                <TextInput style={{borderWidth: 1.5, borderRadius:50, borderColor:'#B04C00', paddingLeft:20, fontSize:18, backgroundColor:'#f5f5f5'}} value={itemName} onChangeText={(text) => setItemName(text)}/>
+                <TextInput style={{borderWidth: 1.5, borderRadius:50, borderColor:'#450B3F', paddingLeft:20, fontSize:18, backgroundColor:'#f5f5f5'}} value={itemName} onChangeText={(text) => setItemName(text)}/>
             </View>
 
             <View style={{padding: 10}}>
                 <Text style={{fontWeight: 'bold', fontSize:16, paddingBottom:5}}>Price:</Text>
-                <TextInput style={{borderWidth: 1.5, borderRadius:50, borderColor:'#B04C00', paddingLeft:20, fontSize:18, backgroundColor:'#f5f5f5'}} value={price} onChangeText={(number) => setPrice(number)}/>
+                <TextInput style={{borderWidth: 1.5, borderRadius:50, borderColor:'#450B3F', paddingLeft:20, fontSize:18, backgroundColor:'#f5f5f5'}} value={price} onChangeText={(number) => setPrice(number)}/>
             </View>
 
             <View style={styles.buttonContainer0}>

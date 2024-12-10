@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         width: 200,
         height: 50,
-        backgroundColor:'#B04C00',
+        backgroundColor:'#450B3F',
         margin: 10,
     },
     headingIntro: {

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: 400,
         height: 50,
-        backgroundColor:'#B04C00',
+        backgroundColor:'#450B3F',
         margin: 3,
     },
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: 105,
         height: 105,
-        backgroundColor:'#B04C00',
+        backgroundColor:'#450B3F',
     },
     textButton0: {
         textAlign: 'center',
